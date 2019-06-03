@@ -1,122 +1,248 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>CVPR 2019 Summarization Tutorial</title>
+<style type="text/css" media="screen">
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  border: 0pt none;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0pt;
+  outline-color: invert;
+  outline-style: none;
+  outline-width: 0pt;
+  padding: 0pt;
+  vertical-align: baseline;
+}
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0056)https://gkioxari.github.io/Tutorials/eccv2018/index.html -->
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+a {
+  color: #1772d0;
+  text-decoration:none;
+}
 
-<title>Tutorial</title>
+a:focus, a:hover {
+  color: #f09228;
+  text-decoration:none;
+}
 
-  <link rel="stylesheet" href="./Tutorial_files/bootstrap.min.css">
-  <link href="./Tutorial_files/css" rel="stylesheet" type="text/css">
-  <link href="./Tutorial_files/style.css" rel="stylesheet" type="text/css">
-</head>
+a.paper {
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+b.paper {
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+* {
+  margin: 0pt;
+  padding: 0pt;
+}
+
+body {
+  position: relative;
+  margin: 3em auto 2em auto;
+  width: 800px;
+  font-family: Lato, Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  background: #eee;
+}
+
+h2 {
+  font-family: Lato, Verdana, Helvetica, sans-serif;
+  font-size: 18pt;
+  font-weight: 700;
+}
+
+h3 {
+  font-family: Lato, Verdana, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+strong {
+  font-family: Lato, Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+ul {
+  list-style: circle;
+}
+
+img {
+  border: none;
+}
+
+li {
+  padding-bottom: 0.5em;
+  margin-left: 1.4em;
+}
+
+strong, b {
+  font-weight:bold;
+}
+
+em, i {
+  font-style:italic;
+}
+
+div.section {
+  clear: both;
+  margin-bottom: 1.5em;
+  background: #eee;
+}
+
+div.spanner {
+  clear: both;
+}
+
+div.paper {
+  clear: both;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 1em 1em 1em 1em;
+}
+
+div.paper div {
+  padding-left: 200px;
+}
+
+img.paper {
+  margin-bottom: 0.5em;
+  float: left;
+  width: 170px;
+}
+
+div.dissert {
+  clear: both;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 1em 1em 1em 1em;
+}
+
+div.dissert div {
+  padding-left: 150px;
+}
+
+img.dissert {
+  margin-bottom: 0.5em;
+  float: left;
+  width: 140px;
+}
+
+span.blurb {
+  font-style:italic;
+  display:block;
+  margin-top:0.75em;
+  margin-bottom:0.5em;
+}
+
+pre, code {
+  font-family: 'Lucida Console', 'Andale Mono', 'Courier', monospaced;
+  margin: 1em 0;
+  padding: 0;
+}
+
+div.paper pre {
+  font-size: 0.9em;
+}
+
+</style>
+
+<script type="text/javascript" async="" src="./page_files/ga.js"></script><script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-7953909-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript" src="./page_files/hidebib.js"></script>
+
+<link href="./page_files/css" rel="stylesheet" type="text/css">
+<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>-->
+<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>-->
+<!--<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>-->
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
 
 <body>
 
-<div class="container">
+<div class="section">
   <table border="0" align="center">
     <tbody><tr>
       <td width="623" align="center" valign="middle"><h3>CVPR 2019 Tutorial on</h3>
-      <span class="title">Visual Recognition and Beyond</span></td>
+      <span class="title">Recent Advances in Visual Data Summarization</span></td>
     </tr>
     <tr>
-        <td colspan="3" align="center"><h3> Location: Room 104C <br>Long Beach, CA<br>Sunday, June 16 (AM), 2019</h3></td>
+        <td colspan="3" align="center"><h3> Location: Room 203C <br>Long Beach, CA<br>Sunday, June 16, 1:30 pm - 5:30 pm </h3></td>
     </tr>
   </tbody></table>
-  <p><img src="./Tutorial_files/teaser_cvpr19.jpg" height="180" align="middle"></p>
-  <p>
-  <img src="../pubs/slowfast_output.gif" height="182" align="middle">
-  <img src="./Tutorial_files/teaser_cvpr19_2.jpg" height="182" align="middle">
-
 </div>
 
-<br>
 
-<div class="container">
-  <h2>Organizers</h2>
-    <div>
+<div class="section">
+<h2> Organizers </h2>
+  <div class="paper">
 
-      <div class="instructor">
-        <a href="http://www.rossgirshick.info/">
-        <div class="instructorphoto"><img src="./Tutorial_files/ross.jpg" id="ross"></div>
-        <div>Ross Girshick<br>FAIR</div>
-        </a>
-      </div>
-
-      <div class="instructor">
-        <a href="http://kaiminghe.com/">
-        <div class="instructorphoto"><img src="./Tutorial_files/kaiming.jpg" id="he"></div>
-        <div>Kaiming He<br>FAIR</div>
-        </a>
-      </div>
-
-      <div class="instructor">
-        <a href="http://feichtenhofer.github.io/">
-        <div class="instructorphoto"><img src="./Tutorial_files/christoph.jpg" id="christoph"></div>
-        <div>Christoph Feichtenhofer<br>FAIR</div>
-        </a>
-      </div>
-      <br>
-      <div class="instructor">
-      <a href="http://cs.stanford.edu/people/jcjohns/">
-        <div class="instructorphoto"><img src="http://cs.stanford.edu/people/jcjohns/images/me-v2.jpg" id="justin"></div>
-        <div>Justin Johnson<br>FAIR</div>
-        </a>
-      </div>
-
-      <div class="instructor">
-        <a href="https://alexander-kirillov.github.io/">
-        <div class="instructorphoto"><img src="./Tutorial_files/alex.jpg" id="alex"></div>
-        <div>Alexander Kirillov<br>FAIR</div>
-        </a>
-      </div>
-
-      <div class="instructor">
-        <a href="http://people.eecs.berkeley.edu/~gkioxari/">
-        <div class="instructorphoto"><img src="./Tutorial_files/georgia.jpg" id="georgia"></div>
-        <div>Georgia Gkioxari<br>FAIR</div>
-        </a>
-      </div>
-
-      <div class="instructor">
-        <a href="https://pdollar.github.io/">
-        <div class="instructorphoto"><img src="./Tutorial_files/piotr.jpg" id="piotr"></div>
-        <div>Piotr Dollàr<br>FAIR</div>
-        </a>
-      </div>
-    </div>
-    <p></p>
+</div>
 </div>
 
-<br>
 
-<div class="container">
-  <h2>Overview</h2>
-    <p>This tutorial covers topics at the frontier of research on visual recognition.
-      We will discuss the recent advances on instance-level recognition from images and videos, covering in detail the most recent work in the family of visual recognition tasks.
-      The talks cover methods and principles behind image classification, video classification, object detection, action detection, instance segmentation, semantic segmentation, panoptic segmentation, and pose estimation.
-    </p>
+
+<div class="section">
+<h2>Tutorial Description</h2>
+  <div class="paper">
+This work is partially supported by NSF grant 1724341
+and gifts from Adobe. We thank Victor Hill of UCR CS for setting up the computing infrastructure used in this work.
+</div>
 </div>
 
-<br>
 
-<div class="container">
-  <h2>Schedule</h2>
-    <div class="schedule">
-      <p><span class="announce_date">08:30 - 09:15</span> <strong> Object Detection and Instance Segmentation </strong> - <em>Ross Girshick</em> </p>
-      <p><span class="announce_date">09:15 - 10:00</span> <strong> Panoptic Segmentation Frameworks </strong> - <em>Alexander Kirillov</em> </p>
-      <p><span class="announce_date">10:00 - 10:30</span> Coffee Break </p>
-      <p><span class="announce_date">10:30 - 11:15</span> <strong> Predicting 3D Shapes from 2D Images </strong> - <em>Justin Johnson</em> </p>
-      <p><span class="announce_date">11:15 - 12:00</span> <strong> Video Classification and Detection </strong> - <em>Christoph Feichtenhofer</em> </p>
-    </div>
+
+<div class="section">
+<h2>Schedule</h2>
+  <div class="paper">
+This work is partially supported by NSF grant 1724341
+and gifts from Adobe. We thank Victor Hill of UCR CS for setting up the computing infrastructure used in this work.
+</div>
 </div>
 
-<br>
-
-<div class="containersmall">
-  <p>Contact: <a href="mailto:feichtenhofer@fb.com">Christoph Feichtenhofer</a></p>
+<div class="section">
+<h2>Target Audience</h2>
+  <div class="paper">
+This work is partially supported by NSF grant 1724341
+and gifts from Adobe. We thank Victor Hill of UCR CS for setting up the computing infrastructure used in this work.
+</div>
 </div>
 
-<!--<p align="center" class="acknowledgement">Last updated: 30 July 2012</p>-->
-
+<div class="section">
+<h2>Speaker Bios</h2>
+  <div class="paper">
+This work is partially supported by NSF grant 1724341
+and gifts from Adobe. We thank Victor Hill of UCR CS for setting up the computing infrastructure used in this work.
+</div>
+</div>
 
 </body></html>
