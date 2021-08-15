@@ -68,6 +68,12 @@ a {
   text-decoration: none;
 }
 
+grey {
+		color: #696969;
+		font-family: 'Lato', Verdana, Helvetica, sans-serif;
+		font-size: 14px;
+		}
+
 a:focus,
 a:hover {
   color: #f09228;
