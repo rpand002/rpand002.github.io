@@ -145,3 +145,13 @@ span.highlight {
 .auto-style1 {
     color: #700000;
   }
+
+.listbox{
+    position: static;
+    overflow-y: scroll;
+    height: 200px;
+    color: black;
+/*     border: 2px solid black; */
+/*     padding: 20px 50px 0px 30px; */
+/*     font-size: 15px; */
+    }
