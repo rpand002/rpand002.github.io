@@ -87,7 +87,7 @@
         <a href="https://x.com/rpanda89">Twitter</a>
         <a href="mailto:rameswar183@gmail.com">Email</a>
       </div>
-      <p class="bio">Hi! I lead the core team at IBM Research building Granite, IBM's open language models, with researchers, engineers, and managers across the US and India. Our work spans model architecture, pretraining, post-training, reasoning, and tool use, with a focus on building capable and efficient models that people can run, inspect, and adapt themselves. I'm based in Cambridge, MA, and am also a principal investigator at the MIT-IBM Computing Research Lab. Before language models, I worked on computer vision and deep learning, and I did my PhD at UC Riverside with Amit Roy-Chowdhury.</p>
+      <p class="bio">Hi! I lead the core team at IBM Research building Granite, IBM's open language models, with researchers, engineers, and managers across the US and India. Our work spans model architecture, pretraining, post-training, agentic reinforcement learning, reasoning, and tool use, with a focus on building capable and efficient models that people can run, inspect, and adapt themselves. I'm based in Cambridge, MA, and am also a principal investigator on multiple projects at the MIT-IBM Computing Research Lab. Before language models, I worked on computer vision and deep learning, and I did my PhD at UC Riverside with Amit Roy-Chowdhury.</p>
     </div>
   </header>
 
@@ -102,7 +102,7 @@
 
     <p><b>Training recipes:</b> Hyperparameters and data that work at one scale often break at another. Our work here includes the <a href="https://arxiv.org/abs/2408.13359">Power Scheduler</a>, which needs no retuning as batch size or token count changes, <a href="https://arxiv.org/abs/2606.10087">CodeAlchemy</a> for synthetic code data, and <a href="https://arxiv.org/abs/2603.17074">PRISM</a>, which shows that a short mid-training phase is what makes later reinforcement learning work.</p>
 
-    <p><b>Agents:</b> Tool use is limited by data. <a href="https://huggingface.co/datasets/Agent-Ark/Toucan-1.5M">Toucan</a>, our open dataset of 1.5M trajectories from real <a href="https://arxiv.org/abs/2510.01179">MCP environments</a>, is now part of the training data for other open models.</p>
+    <p><b>Agents:</b> We built the <a href="https://huggingface.co/blog/ibm-granite/granite-4-2">agentic RL infrastructure and environments</a> behind Granite 4.2, training models in real software repositories, live terminals, and web search. Tool use is also limited by data: <a href="https://huggingface.co/datasets/Agent-Ark/Toucan-1.5M">Toucan</a>, our open dataset of 1.5M trajectories from real <a href="https://arxiv.org/abs/2510.01179">MCP environments</a>, is used to train many other open models.</p>
 
     <p><b>Vision (earlier work):</b> Before language models, I worked on efficient computer vision, including <a href="https://arxiv.org/abs/2103.14899">CrossViT</a>, <a href="https://arxiv.org/abs/2007.15796">adaptive video recognition</a> and <a href="https://arxiv.org/abs/1911.12423">multi-task learning</a>.</p>
   </section>
@@ -113,7 +113,7 @@
 
     <div class="item"><a class="t" href="https://huggingface.co/ibm-granite">Granite language models</a><br><span class="m">Open models from 350M to 34B parameters under Apache 2.0, from Granite Code (3B to 34B, 116 programming languages, <a href="https://arxiv.org/abs/2407.13739">extended to 128K context</a>) through Granite 4.2. In <a href="https://research.ibm.com/blog/granite-4-1-ai-foundation-models">Granite 4.1</a>, a dense 8B matches the previous 32B mixture-of-experts. Downloaded more than 45 million times across <a href="https://huggingface.co/ibm-granite">Hugging Face</a> and <a href="https://ollama.com/search?q=granite">Ollama</a>. The Granite architectures are supported natively in Hugging Face Transformers. <a href="https://github.com/ibm-granite/granite-code-models">GitHub</a></span></div>
 
-    <div class="item"><a class="t" href="https://huggingface.co/datasets/Agent-Ark/Toucan-1.5M">Toucan-1.5M</a><br><span class="m">1.5M tool-use trajectories built from 495 real MCP servers and 2,000+ tools, with the full pipeline to generate more. It was the #1 trending dataset on Hugging Face for over a week, has about 100K downloads, and is part of the training data for NVIDIA's <a href="https://build.nvidia.com/nvidia/nemotron-3.5-lightning-30b-a3b/modelcard">Nemotron</a> models and <a href="https://arxiv.org/abs/2511.11793">MiroThinker</a>. <a href="https://github.com/TheAgentArk/Toucan">GitHub</a></span></div>
+    <div class="item"><a class="t" href="https://huggingface.co/datasets/Agent-Ark/Toucan-1.5M">Toucan-1.5M</a><br><span class="m">1.5M tool-use trajectories built from 495 real MCP servers and 2,000+ tools, with the full pipeline to generate more. It was the #1 trending dataset on Hugging Face for over a week, has about 100K downloads, and is used to train many open-source models, including NVIDIA's <a href="https://build.nvidia.com/nvidia/nemotron-3.5-lightning-30b-a3b/modelcard">Nemotron</a> models and <a href="https://arxiv.org/abs/2511.11793">MiroThinker</a>. <a href="https://github.com/TheAgentArk/Toucan">GitHub</a></span></div>
 
     <div class="item"><a class="t" href="https://huggingface.co/datasets/open-alchemy/code-alchemy">CodeAlchemy</a><br><span class="m">A synthetic code dataset of nearly 1 trillion tokens across 15 programming languages, built by rewriting real code into cleaner training data and pairing it with execution traces. Used to train Granite, where a 3B model trained on 100B synthetic tokens beat the same model trained on 600B tokens of real code. <a href="https://arxiv.org/abs/2606.10087">Paper</a> · <a href="https://research.ibm.com/blog/code-alchemy-for-synthetic-code">IBM blog</a></span></div>
 
@@ -121,7 +121,9 @@
 
     <div class="item"><a class="t" href="https://github.com/IBM/CrossViT">CrossViT</a><br><span class="m">Official implementation of the CrossViT vision transformer (ICCV 2021).</span></div>
 
-    <div class="item"><span class="t">More code and data</span><br><span class="m"><a href="https://huggingface.co/datasets/apipack/API-Pack-Dataset">API Pack</a> (a multi-language dataset for API call generation), <a href="https://github.com/IBM/RegionViT">RegionViT</a> (vision transformer), <a href="https://github.com/sunxm2357/AdaShare">AdaShare</a> (multi-task learning), <a href="https://github.com/mengyuest/AR-Net">AR-Net</a> (efficient video recognition), and <a href="https://github.com/IBM/AdaMML">AdaMML</a> (adaptive multi-modal learning for video).</span></div>
+    <div class="item"><a class="t" href="https://huggingface.co/datasets/apipack/API-Pack-Dataset">API Pack</a><br><span class="m">Over 1M instruction&ndash;API call pairs across programming languages for training models to generate API calls. Used in Amazon's <a href="https://aclanthology.org/2025.naacl-long.308/">Hephaestus</a> agent pretraining corpus and in Granite 3.0. <a href="https://arxiv.org/abs/2402.09615">Paper</a></span></div>
+
+    <div class="item"><span class="t">More code and data</span><br><span class="m"><a href="https://github.com/IBM/RegionViT">RegionViT</a> (vision transformer), <a href="https://github.com/sunxm2357/AdaShare">AdaShare</a> (multi-task learning), <a href="https://github.com/mengyuest/AR-Net">AR-Net</a> (efficient video recognition), and <a href="https://github.com/IBM/AdaMML">AdaMML</a> (adaptive multi-modal learning for video).</span></div>
   </section>
 
   <section>
@@ -130,7 +132,6 @@
 
     <div class="item"><a class="t" href="https://arxiv.org/abs/2510.01179">TOUCAN: Synthesizing 1.5M Tool-Agentic Data from Real-World MCP Environments</a><br><span class="m">Xu, Z., Meza Soria, A., Tan, S., Roy, A., Agrawal, A., Poovendran, R., <b>Panda, R.</b> EMNLP (2026)</span></div>
     <div class="item"><a class="t" href="https://arxiv.org/abs/2606.03825">Dynamic Short Convolutions Improve Transformers</a><br><span class="m">Sieberling, O., Runwal, B., <b>Panda, R.</b>, Kim, Y. NeurIPS (2026)</span></div>
-    <div class="item"><a class="t" href="https://arxiv.org/abs/2504.03635">Finding the Minimal Parameter Budget for Implicit Reasoning: A Data Complexity Driven Scaling Law for Language Models</a><br><span class="m">Wang, X., Tan, S., Xu, S., Jin, M., Wang, W. Y., <b>Panda, R.</b>, Shen, Y. ICML (2026)</span></div>
     <div class="item"><a class="t" href="https://arxiv.org/abs/2512.20569">Distilling to Hybrid Attention Models via KL-Guided Layer Selection</a><br><span class="m">Li, Y., Yang, S., Tan, S., Mishra, M., <b>Panda, R.</b>, Zhou, J., Kim, Y. ICLR (2026)</span></div>
     <div class="item"><a class="t" href="https://arxiv.org/abs/2606.10087">CodeAlchemy: Synthetic Code Rewriting at Scale</a><br><span class="m">Gupta, A., Prasad, A., <b>Panda, R.</b> arXiv:2606.10087 (2026)</span></div>
     <div class="item"><a class="t" href="https://arxiv.org/abs/2603.17074">PRISM: Demystifying Retention and Interaction in Mid-Training</a><br><span class="m">Runwal, B., Agrawal, A., Roy, A., <b>Panda, R.</b> arXiv:2603.17074 (2026)</span></div>
@@ -139,6 +140,7 @@
     <div class="item"><a class="t" href="https://arxiv.org/abs/2405.12981">Reducing Transformer Key-Value Cache Size with Cross-Layer Attention</a><br><span class="m">Brandon, W., Mishra, M., Nrusimha, A., <b>Panda, R.</b>, Ragan-Kelley, J. NeurIPS (2024)</span></div>
     <div class="item"><a class="t" href="https://arxiv.org/abs/2312.06635">Gated Linear Attention Transformers with Hardware-Efficient Training</a><br><span class="m">Yang, S., Wang, B., Shen, Y., <b>Panda, R.</b>, Kim, Y. ICML (2024)</span></div>
     <div class="item"><a class="t" href="https://arxiv.org/abs/2402.10171">Data Engineering for Scaling Language Models to 128K Context</a><br><span class="m">Fu, Y., <b>Panda, R.</b>, Niu, X., Yue, X., Hajishirzi, H., Kim, Y., Peng, H. ICML (2024)</span></div>
+    <div class="item"><a class="t" href="https://github.com/ibm-granite/granite-3.0-language-models">Granite 3.0 Language Models</a><br><span class="m">IBM Granite Team (technical leadership). Technical report (2024)</span></div>
     <div class="item"><a class="t" href="https://arxiv.org/abs/2405.04324">Granite Code Models: A Family of Open Foundation Models for Code Intelligence</a><br><span class="m">Mishra, M., Stallone, M., Zhang, G., et al., Cox, D., Puri, R., <b>Panda, R.</b> arXiv:2405.04324 (2024)</span></div>
     <div class="item"><a class="t" href="https://arxiv.org/abs/2012.03358">Select, Label, and Mix: Learning Discriminative Invariant Feature Representations for Partial Domain Adaptation</a><br><span class="m">Sahoo, A., <b>Panda, R.</b>, Feris, R., Saenko, K., Das, A. WACV (2023), Best Paper Honorable Mention</span></div>
     <div class="item"><a class="t" href="https://arxiv.org/abs/2103.14899">CrossViT: Cross-Attention Multi-Scale Vision Transformer for Image Classification</a><br><span class="m">Chen, C.-F., Fan, Q., <b>Panda, R.</b> ICCV (2021)</span></div>
@@ -164,6 +166,7 @@
     <div class="item"><span class="t">Area Chair</span><br><span class="m">NeurIPS 2026, ICML 2027, AAAI 2027, WACV 2022, ICVGIP 2022</span></div>
     <div class="item"><span class="t">Workshop organizer</span><br><span class="m">Dynamic Neural Networks (CVPR 2021, 2022), Neural Architecture Search (CVPR 2020, 2021), Multi-Modal Video Analysis (ICCV 2019, ECCV 2020)</span></div>
     <div class="item"><span class="t">Tutorials</span><br><span class="m">Efficient Video Understanding (ICCV 2021), Visual Data Summarization (CVPR 2019)</span></div>
+    <div class="item"><span class="t">Program committee</span><br><span class="m">NeurIPS, ICML, ICLR, AAAI, CVPR, ICCV, ECCV</span></div>
   </section>
 
   <footer>© 2026 Rameswar Panda</footer>
